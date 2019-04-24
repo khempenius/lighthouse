@@ -5,41 +5,44 @@
  */
 
 declare global {
-    module LH {
-        module Budget {
-            /** More info: https://github.com/GoogleChrome/lighthouse/issues/6053#issuecomment-428385930 */
-            export interface Budget {
-                /** Budgets based on resource count */
-                resourceCounts ? : Array < ResourceBudget > ;
-                /** Budgets based on resource size */
-                resourceSizes ? : Array < ResourceBudget > ;
-                /** Budgets based on timing metrics */
-                timings ? : Array < TimingBudget > ;
-            }
-
-            export interface ResourceBudget {
-                /** The resource type that a budget applies to */
-                resourceType: ResourceType;
-                /** Budget for resource. Depending on context, this is either the count or size (KB) of a resource */
-                budget: number;
-            }
-
-            export interface TimingBudget {
-                /** The type of timing metric */
-                metric: TimingMetric;
-                /** Budget for timing measurement, in milliseconds */
-                budget: number;
-                /** Tolerance, i.e. buffer, to apply to a timing budget. Units: milliseconds. */
-                tolerance ? : number;
-            }
-
-            /** Supported timing metrics */
-            export type TimingMetric = 'first-contentful-paint' | 'first-cpu-idle' | 'interactive' | 'first-meaningful-paint' | 'estimated-input-latency';
-
-            /** Supported resource types */
-            export type ResourceType = 'stylesheet' | 'image' | 'media' | 'font' | 'script' | 'document' | 'other';
-        }
+  module LH {
+    /**
+     * The performance budget interface.
+     * More info: https://github.com/GoogleChrome/lighthouse/issues/6053#issuecomment-428385930
+     */
+    export interface Budget {
+      /** Budgets based on resource count. */
+      resourceCounts?: Array<Budget.ResourceBudget>;
+      /** Budgets based on resource size. */
+      resourceSizes?: Array<Budget.ResourceBudget>;
+      /** Budgets based on timing metrics. */
+      timings?: Array<Budget.TimingBudget> ;
     }
+
+    module Budget {
+      export interface ResourceBudget {
+        /** The resource type that a budget applies to. */
+        resourceType: ResourceType;
+        /** Budget for resource. Depending on context, this is either the count or size (KB) of a resource. */
+        budget: number;
+      }
+
+      export interface TimingBudget {
+        /** The type of timing metric. */
+        metric: TimingMetric;
+        /** Budget for timing measurement, in milliseconds. */
+        budget: number;
+        /** Tolerance, i.e. buffer, to apply to a timing budget. Units: milliseconds. */
+        tolerance?: number;
+      }
+
+      /** Supported timing metrics. */
+      export type TimingMetric = 'first-contentful-paint' | 'first-cpu-idle' | 'interactive' | 'first-meaningful-paint' | 'estimated-input-latency';
+
+      /** Supported resource types. */
+      export type ResourceType = 'stylesheet' | 'image' | 'media' | 'font' | 'script' | 'document' | 'other';
+    }
+  }
 }
 
 // empty export to keep file a module

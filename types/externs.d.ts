@@ -120,7 +120,7 @@ declare global {
       /** Precomputed lantern estimates to use instead of observed analysis. */
       precomputedLanternData?: PrecomputedLanternData | null;
       /** The budget.json object for LightWallet. */
-      budget?: Array<Budget.Budget> | null;
+      budget?: Array<Budget> | null;
     }
 
     /**
@@ -171,7 +171,7 @@ declare global {
       precomputedLanternDataPath?: string;
       /** Path to the file where precomputed lantern data should be written to. */
       lanternDataOutputPath?: string;
-      /** Path to the budget.json file for LightWallet */
+      /** Path to the budget.json file for LightWallet. */
       budgetPath?: string | null;
 
       // The following are given defaults in cli-flags, so are not optional like in Flags or SharedFlagsSettings.

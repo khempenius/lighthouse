@@ -6,12 +6,12 @@
 'use strict';
 
 class Budget {
-/**
- * Asserts that obj has no own properties, throwing a nice error message if it does.
- * Plugin and object name are included for nicer logging.
- * @param {Record<string, unknown>} obj
- * @param {string} objectName
- */
+  /**
+   * Asserts that obj has no own properties, throwing a nice error message if it does.
+   * Plugin and object name are included for nicer logging.
+   * @param {Record<string, unknown>} obj
+   * @param {string} objectName
+   */
   static assertNoExcessProperties(obj, objectName) {
     const invalidKeys = Object.keys(obj);
     if (invalidKeys.length > 0) {
@@ -21,9 +21,9 @@ class Budget {
   }
 
   /**
- * @param {LH.Budget.ResourceBudget} resourceBudget
- * @return {LH.Budget.ResourceBudget}
- */
+   * @param {LH.Budget.ResourceBudget} resourceBudget
+   * @return {LH.Budget.ResourceBudget}
+   */
   static validateResourceBudget(resourceBudget) {
     const {resourceType, budget, ...invalidRest} = resourceBudget;
     Budget.assertNoExcessProperties(invalidRest, 'Resource Budget');
@@ -53,9 +53,9 @@ class Budget {
   }
 
   /**
- * @param {LH.Budget.TimingBudget} timingBudget
- * @return {LH.Budget.TimingBudget}
- */
+   * @param {LH.Budget.TimingBudget} timingBudget
+   * @return {LH.Budget.TimingBudget}
+   */
   static validateTimingBudget(timingBudget) {
     const {metric, budget, tolerance, ...invalidRest} = timingBudget;
     Budget.assertNoExcessProperties(invalidRest, 'Timing Budget');
@@ -84,19 +84,18 @@ class Budget {
     };
   }
 
-  /** More info on the Budget format:
-  * https://github.com/GoogleChrome/lighthouse/issues/6053#issuecomment-428385930
-  * /
   /**
- * @param {Array<LH.Budget.Budget>} budgetArr
- * @return {Array<LH.Budget.Budget>}
- */
+   * More info on the Budget format:
+   * https://github.com/GoogleChrome/lighthouse/issues/6053#issuecomment-428385930
+   * @param {Array<LH.Budget>} budgetArr
+   * @return {Array<LH.Budget>}
+   */
   static initializeBudget(budgetArr) {
-    /** @type {Array<LH.Budget.Budget>} */
+    /** @type {Array<LH.Budget>} */
     const budgets = [];
 
     budgetArr.forEach((b) => {
-      /** @type {LH.Budget.Budget} */
+      /** @type {LH.Budget} */
       const budget = {};
 
       const {resourceSizes, resourceCounts, timings, ...invalidRest} = b;

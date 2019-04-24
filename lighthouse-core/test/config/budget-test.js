@@ -57,6 +57,7 @@ describe('Budget', () => {
       },
     ];
   });
+
   it('initializes correctly', () => {
     const budgets = Budget.initializeBudget(budget);
     assert.equal(budgets.length, 2);
@@ -102,6 +103,7 @@ describe('Budget', () => {
       assert.throws(_ => Budget.initializeBudget(budget), /[browser]/);
     });
   });
+
   describe('timing budget validation', () => {
     it('throws when an invalid metric is supplied', () => {
       budget[0].timings[0].metric = 'lastMeaningfulPaint';

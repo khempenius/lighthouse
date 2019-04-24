@@ -79,7 +79,7 @@ async function begin() {
 
   if (cliFlags.budgetPath) {
     cliFlags.budgetPath = path.resolve(process.cwd(), cliFlags.budgetPath);
-    /** @type {Array<LH.Budget.Budget>} */
+    /** @type {Array<LH.Budget>} */
     const parsedBudget = JSON.parse(fs.readFileSync(cliFlags.budgetPath, 'utf8'));
     cliFlags.budget = parsedBudget;
   }
